@@ -1,3 +1,9 @@
+import { Layout } from '../components'
+
 export default function Home() {
-  return <h1>Next.js</h1>
+  return (
+    <Layout page="Inicio">
+      <h1>Inicio</h1>
+    </Layout>
+  )
 }
