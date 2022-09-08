@@ -1,9 +1,17 @@
 import Image from 'next/image'
+import { useContext } from 'react'
+import { KioskContext } from '../../context/KioskProvider'
 
 export const Category = ({ category }) => {
+  const { currentCategory, handleClickCategory } = useContext(KioskContext)
   const { name, icon, id } = category
   return (
-    <div className="flex w-full items-center gap-4 border p-5 hover:bg-amber-400">
+    <div
+      className={`${
+        currentCategory?.id === id && 'bg-amber-400'
+      } flex w-full items-center gap-4 border p-5 hover:cursor-pointer hover:bg-amber-400`}
+      onClick={() => handleClickCategory(id)}
+    >
       <Image
         alt="Imagen Icono"
         width={70}

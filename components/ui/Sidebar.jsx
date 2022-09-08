@@ -1,9 +1,10 @@
 import Image from 'next/image'
-import { useKiosk } from '../../hooks/useKiosk'
+import { useContext } from 'react'
+import { KioskContext } from '../../context/KioskProvider'
 import { Category } from './Category'
 
 export const Sidebar = () => {
-  const { categories, isLoading } = useKiosk()
+  const { categories, isLoading } = useContext(KioskContext)
 
   return (
     <>
