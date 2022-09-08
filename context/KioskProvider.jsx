@@ -44,6 +44,7 @@ export const KioskProvider = ({ children }) => {
         isLoading,
         currentCategory,
         handleClickCategory,
+        product,
         handleSetProduct,
         modal,
         handleChangeModal,

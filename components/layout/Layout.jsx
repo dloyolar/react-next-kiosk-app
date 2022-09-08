@@ -3,6 +3,7 @@ import { Sidebar } from '../ui/Sidebar'
 import Modal from 'react-modal'
 import { useContext } from 'react'
 import { KioskContext } from '../../context/KioskProvider'
+import { ModalProduct } from '../ui/ModalProduct'
 
 const customStyles = {
   content: {
@@ -38,7 +39,7 @@ export const Layout = ({ children, page }) => {
 
       {modal && (
         <Modal isOpen={modal} style={customStyles}>
-          <h1>Modal</h1>
+          <ModalProduct />
         </Modal>
       )}
     </>
