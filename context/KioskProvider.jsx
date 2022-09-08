@@ -7,6 +7,8 @@ export const KioskProvider = ({ children }) => {
   const [categories, setCategories] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [currentCategory, setCurrentCategory] = useState({})
+  const [product, setProduct] = useState({})
+  const [modal, setModal] = useState(false)
 
   useEffect(() => {
     getCategories()
@@ -27,9 +29,25 @@ export const KioskProvider = ({ children }) => {
     setCurrentCategory(category)
   }
 
+  const handleSetProduct = (product) => {
+    setProduct(product)
+  }
+
+  const handleChangeModal = () => {
+    setModal(!modal)
+  }
+
   return (
     <KioskContext.Provider
-      value={{ categories, isLoading, currentCategory, handleClickCategory }}
+      value={{
+        categories,
+        isLoading,
+        currentCategory,
+        handleClickCategory,
+        handleSetProduct,
+        modal,
+        handleChangeModal,
+      }}
     >
       {children}
     </KioskContext.Provider>
