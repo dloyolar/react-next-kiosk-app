@@ -9,6 +9,7 @@ export const KioskProvider = ({ children }) => {
   const [currentCategory, setCurrentCategory] = useState({})
   const [product, setProduct] = useState({})
   const [modal, setModal] = useState(false)
+  const [order, setOrder] = useState([])
 
   useEffect(() => {
     getCategories()
@@ -37,6 +38,20 @@ export const KioskProvider = ({ children }) => {
     setModal(!modal)
   }
 
+  const addOrder = ({ categoryId, image, ...product }) => {
+    if (order.some((prod) => prod.id === product.id)) {
+      const orderUpdate = order.map((prod) =>
+        prod.id === product.id ? product : prod
+      )
+
+      setOrder(orderUpdate)
+    } else {
+      setOrder([...order, product])
+    }
+
+    setModal(false)
+  }
+
   return (
     <KioskContext.Provider
       value={{
@@ -48,6 +63,8 @@ export const KioskProvider = ({ children }) => {
         handleSetProduct,
         modal,
         handleChangeModal,
+        addOrder,
+        order,
       }}
     >
       {children}
