@@ -1,23 +1,18 @@
 import { useCallback, useContext, useEffect } from 'react'
 import { Layout } from '../components/layout/Layout'
 import { KioskContext } from '../context/KioskProvider'
+import { priceFormat } from '../helpers'
 
 const TotalPage = () => {
-  const { order } = useContext(KioskContext)
+  const { order, name, setName, submitOrder, total } = useContext(KioskContext)
 
   const checkOrder = useCallback(() => {
-    return order.length === 0
-  }, [order])
+    return order.length === 0 || name.length < 2
+  }, [order, name])
 
   useEffect(() => {
     checkOrder()
   }, [order, checkOrder])
-
-  const submitOrder = (e) => {
-    e.preventDefault()
-
-    console.log('create')
-  }
 
   return (
     <Layout page="Total">
@@ -36,12 +31,15 @@ const TotalPage = () => {
             type="text"
             className="mt-3 w-full rounded bg-gray-200 p-2 lg:w-1/3"
             id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
 
         <div className="mt-10">
           <p>
-            Total a Pagar: <span className="font-bold">$200</span>
+            Total a Pagar:
+            <span className="font-bold">{priceFormat(total)}</span>
           </p>
         </div>
 
