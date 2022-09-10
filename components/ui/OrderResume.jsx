@@ -4,7 +4,7 @@ import { KioskContext } from '../../context/KioskProvider'
 import { priceFormat } from '../../helpers'
 
 export const OrderResume = ({ product }) => {
-  const { handleEditQuantity } = useContext(KioskContext)
+  const { handleEditQuantity, deleteProductCart } = useContext(KioskContext)
 
   return (
     <div className="mb-3 flex items-center gap-10 p-5 shadow">
@@ -48,6 +48,7 @@ export const OrderResume = ({ product }) => {
         <button
           type="button"
           className="mt-3 flex w-full gap-2 rounded-md bg-red-700 px-5 py-2 font-bold uppercase text-white shadow-md"
+          onClick={() => deleteProductCart(product.id)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
