@@ -1,6 +1,10 @@
-import { Layout, Product, Spinner } from '../components'
+import { useContext } from 'react'
+import { Layout, Product } from '../components'
+import { KioskContext } from '../context/KioskProvider'
 
 export default function Home() {
+  const { currentCategory } = useContext(KioskContext)
+
   return (
     <Layout page={`Menú ${currentCategory?.name || ''}`}>
       <h1 className="text-4xl font-black">{currentCategory?.name}</h1>
