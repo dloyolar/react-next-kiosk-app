@@ -1,10 +1,12 @@
 import { createContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
 export const KioskContext = createContext()
 
 export const KioskProvider = ({ children }) => {
+  const router = useRouter()
   const [categories, setCategories] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [currentCategory, setCurrentCategory] = useState({})
@@ -80,13 +82,28 @@ export const KioskProvider = ({ children }) => {
     e.preventDefault()
 
     try {
-      const { data } = await axios.post('/api/orders', {
-        order,
-        name,
-        total,
-        date: Date.now().toString(),
-      })
-      console.log(data)
+      await toast.promise(
+        axios.post('/api/orders', {
+          order,
+          name,
+          total,
+          date: Date.now().toString(),
+        }),
+        {
+          pending: 'Realizando pedido...',
+          success: 'Pedido realizado correctamente',
+          error: 'El pedido no se logró realizar',
+        }
+      )
+
+      setCurrentCategory(categories[0])
+      setOrder([])
+      setName('')
+      setTotal(0)
+
+      setTimeout(() => {
+        router.push('/')
+      }, 1500)
     } catch (error) {
       console.log(error)
     }
