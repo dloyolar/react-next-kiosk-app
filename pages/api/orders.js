@@ -1,3 +1,5 @@
+import { PrismaClient } from '@prisma/client'
+
 export default function handler(req, res) {
   switch (req.method) {
     case 'POST':
@@ -7,6 +9,19 @@ export default function handler(req, res) {
   }
 }
 
-const createOrder = (req, res) => {
-  return res.status(200).json({ name: 'POST' })
+const createOrder = async (req, res) => {
+  const prisma = new PrismaClient()
+
+  const { name, order, date, total } = req.body
+
+  const dbOrder = await prisma.order.create({
+    data: {
+      name,
+      date,
+      order,
+      total,
+    },
+  })
+
+  return res.status(200).json(dbOrder)
 }

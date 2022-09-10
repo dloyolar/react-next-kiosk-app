@@ -79,7 +79,17 @@ export const KioskProvider = ({ children }) => {
   const submitOrder = async (e) => {
     e.preventDefault()
 
-    console.log('create')
+    try {
+      const { data } = await axios.post('/api/orders', {
+        order,
+        name,
+        total,
+        date: Date.now().toString(),
+      })
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
