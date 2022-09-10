@@ -1,18 +1,6 @@
-import { useContext } from 'react'
 import { Layout, Product, Spinner } from '../components'
-import { KioskContext } from '../context/KioskProvider'
 
 export default function Home() {
-  const { currentCategory, isLoading } = useContext(KioskContext)
-
-  if (isLoading) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <Spinner />
-      </div>
-    )
-  }
-
   return (
     <Layout page={`Menú ${currentCategory?.name || ''}`}>
       <h1 className="text-4xl font-black">{currentCategory?.name}</h1>

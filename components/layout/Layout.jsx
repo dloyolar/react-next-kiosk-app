@@ -8,6 +8,7 @@ import { Sidebar } from '../ui/Sidebar'
 import { KioskContext } from '../../context/KioskProvider'
 import { ModalProduct } from '../ui/ModalProduct'
 import { Steps } from '../ui/Steps'
+import { Spinner } from '../ui/Spinner'
 
 const customStyles = {
   content: {
@@ -23,7 +24,15 @@ const customStyles = {
 Modal.setAppElement('#__next')
 
 export const Layout = ({ children, page }) => {
-  const { modal } = useContext(KioskContext)
+  const { modal, isLoading } = useContext(KioskContext)
+
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <Spinner />
+      </div>
+    )
+  }
 
   return (
     <>
