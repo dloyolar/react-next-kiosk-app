@@ -39,7 +39,7 @@ export const KioskProvider = ({ children }) => {
     setModal(!modal)
   }
 
-  const addOrder = ({ categoryId, image, ...product }) => {
+  const addOrder = ({ categoryId, ...product }) => {
     if (order.some((prod) => prod.id === product.id)) {
       const orderUpdate = order.map((prod) =>
         prod.id === product.id ? product : prod
@@ -55,6 +55,12 @@ export const KioskProvider = ({ children }) => {
     setModal(false)
   }
 
+  const handleEditQuantity = (id) => {
+    const productUpdate = order.filter((product) => product.id === id)
+    setProduct(productUpdate[0])
+    setModal(!modal)
+  }
+
   return (
     <KioskContext.Provider
       value={{
@@ -68,6 +74,7 @@ export const KioskProvider = ({ children }) => {
         handleChangeModal,
         addOrder,
         order,
+        handleEditQuantity,
       }}
     >
       {children}

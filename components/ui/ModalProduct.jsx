@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 import Image from 'next/image'
 import { useContext, useEffect, useState } from 'react'
 import { KioskContext } from '../../context/KioskProvider'
