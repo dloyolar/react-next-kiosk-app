@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Sidebar } from '../ui/Sidebar'
 import { KioskContext } from '../../context/KioskProvider'
 import { ModalProduct } from '../ui/ModalProduct'
+import { Steps } from '../ui/Steps'
 
 const customStyles = {
   content: {
@@ -36,7 +37,10 @@ export const Layout = ({ children, page }) => {
           <Sidebar />
         </aside>
         <main className="2xl:4/5 h-screen overflow-y-scroll md:w-8/12 xl:w-3/4">
-          <div className="p-10">{children}</div>
+          <div className="p-10">
+            <Steps />
+            {children}
+          </div>
         </main>
       </div>
 
