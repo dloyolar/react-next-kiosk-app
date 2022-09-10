@@ -1,7 +1,10 @@
-import Head from 'next/head'
-import { Sidebar } from '../ui/Sidebar'
-import Modal from 'react-modal'
 import { useContext } from 'react'
+import Head from 'next/head'
+import Modal from 'react-modal'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+import { Sidebar } from '../ui/Sidebar'
 import { KioskContext } from '../../context/KioskProvider'
 import { ModalProduct } from '../ui/ModalProduct'
 
@@ -42,6 +45,8 @@ export const Layout = ({ children, page }) => {
           <ModalProduct />
         </Modal>
       )}
+
+      <ToastContainer />
     </>
   )
 }
