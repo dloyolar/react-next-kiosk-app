@@ -4,7 +4,7 @@ Next App for fun ✨🎉
 
 ## Getting Started
 
-❗❗ First of all ❗❗
+❗ First of all
 
 - Set your own env variables, read the .env.template file. I recommend PostgreSQL or MySQL 💪
 
